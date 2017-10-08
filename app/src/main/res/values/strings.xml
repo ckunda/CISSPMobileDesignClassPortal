@@ -3,7 +3,9 @@
     <string name="validUserName">nbkaecy</string>
     <string name="validPassword">tramp</string>
     <string name="strUserName">User Name:</string>
+    <string name="hintUserName">User Name</string>
     <string name="txtPassword">Password:</string>
+    <string name="hintPassword">Password</string>
     <string name="strTitle">SCC CISP 362 Mobile App Programming</string>
     <string name="strLogin">Login</string>
     <string name="strEnglish">English</string>
