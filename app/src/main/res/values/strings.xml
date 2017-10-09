@@ -2,6 +2,7 @@
     <string name="app_name">SCC CISP Mobile Design Class Portal</string>
     <string name="validUserName">nbkaecy</string>
     <string name="validPassword">tramp</string>
+    <string name="strUserID">UserID:</string>
     <string name="strUserName">User Name:</string>
     <string name="hintUserName">User Name</string>
     <string name="txtPassword">Password:</string>
@@ -10,12 +11,15 @@
     <string name="strLogin">Login</string>
     <string name="strEnglish">English</string>
     <string name="strSpanish">Spanish</string>
-    <string name="strName">UserName</string>
     <string name="strError">Incorrect login (No. of tries</string>
 
     <string name="strSacCity">Sac City Affiliation</string>
     <string name="strWelcome">Welcome</string>
     <string name="strLanguage">. Please choose your language and proceed,</string>
+    <string name="strDate">Select Date </string>
+    <string name="strTime">Select Time </string>
+    <string name="strName">Name:</string>
+    <string name="strEmail">email:</string>
     <string-array name="student_array">
         <item>Student</item>
         <item>Faculty</item>
@@ -27,6 +31,10 @@
     <string name="spn_strSacCity">Sac City Afiliación</string>
     <string name="spn_strWelcome">Bienvenido</string>
     <string name="spn_strLanguage">. Por favor elija su idioma y proceda,</string>
+    <string name="spn_strDate">seleccione fecha</string>
+    <string name="spn_strTime">seleccione el tiempo</string>
+    <string name="spn_strName">Nombre:</string>
+    <string name="spn_strEmail">email:</string>
     <string-array name="spn_student_array">
         <item>Estudiante</item>
         <item>Facultad</item>

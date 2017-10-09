@@ -1,20 +1,30 @@
 package com.cisp362.cisspmobiledesignclassportal;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import java.util.Calendar;
 
 public class Main2Activity extends AppCompatActivity
 implements View.OnClickListener {
 
     public static final String ENGLISH_L = "English";
     public static final String SPANISH_L = "Spanish";
-    private TextView welcomeTextView, scaTextView;
+    private TextView welcomeTextView, scaTextView, dateTimeTextView,
+                    nameTextView, emailTextView;
+    private EditText dateEditText, timeEditText, nameEditText, emailEditText;
+    private Button dateButton, timeButton;
     private RadioButton englishRadio, spanishRadio;
     private Spinner scaSpinner;
     private String languageChoice, message;
@@ -28,43 +38,113 @@ implements View.OnClickListener {
         Intent intent = getIntent();
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
+        // Get/set Date Time
+        setDateTime();
+
         // Get Language choice
-        englishRadio = (RadioButton) findViewById(R.id.radioEnglish);
-        spanishRadio = (RadioButton) findViewById(R.id.radioSpanish);
-        if (englishRadio.isChecked()) languageChoice = ENGLISH_L;
-        if (spanishRadio.isChecked()) languageChoice = SPANISH_L;
-        setLanguage(languageChoice);
+        setLanguage();
 
         // Set radio button listeners
         englishRadio.setOnClickListener(this);
         spanishRadio.setOnClickListener(this);
 
+        nameEditText = (EditText) findViewById(R.id.nameEditText);
+        emailEditText = (EditText) findViewById(R.id.emailEditText);
+
+        dateEditText = (EditText) findViewById(R.id.dateEditText);
+        timeEditText = (EditText) findViewById(R.id.timeEditText);
+
+        dateButton = (Button) findViewById(R.id.dateButton);
+        timeButton = (Button) findViewById(R.id.timeButton);
+        dateButton.setOnClickListener(this);
+        timeButton.setOnClickListener(this);
+
     }
     @Override
     public void onClick(View v) {
+        if (v == englishRadio || v == spanishRadio) setLanguage();
+        if (v == dateButton) setDate();
+        if (v == timeButton) setTime();
+    }
 
-        switch (v.getId()) {
+    public void setDate() {
 
-            case R.id.radioEnglish :
-                if (englishRadio.isChecked()) languageChoice = ENGLISH_L;
-                break;
+        // Get Current Date
+        Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
 
-            case R.id.radioSpanish :
-                if (spanishRadio.isChecked()) languageChoice = SPANISH_L;
-                break;
-        }
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener()
+                {
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth)
+                    {
+                        dateEditText.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                    }
+                }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+    }
 
-        setLanguage(languageChoice);
+    public void setTime() {
+
+        // Get Current Time
+        Calendar c = Calendar.getInstance();
+        int mHour = c.get(Calendar.HOUR_OF_DAY);
+        int mMinute = c.get(Calendar.MINUTE);
+
+        // Launch Time Picker Dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener()
+                {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute)
+                    {
+                        timeEditText.setText(hourOfDay + ":" + minute);
+                    }
+                }, mHour, mMinute, false);
+        timePickerDialog.show();
+    }
+
+    public void setDateTime() {
+
+        // Get Current Date
+        Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+        String date = (mMonth+1) + "/" + mDay + "/" + mYear;
+
+        // Get Current Time
+        int mHour = c.get(Calendar.HOUR_OF_DAY);
+        int mMinute = c.get(Calendar.MINUTE);
+        String time = mHour + ":" + mMinute;
+
+        // Set date/time
+        dateTimeTextView = (TextView) findViewById(R.id.dateTimeTextView);
+        dateTimeTextView.setText("Date/Time: " + date + " " + time);
 
     }
 
-    public void setLanguage(String languageC) {
+    public void setLanguage() {
+
+        englishRadio = (RadioButton) findViewById(R.id.radioEnglish);
+        spanishRadio = (RadioButton) findViewById(R.id.radioSpanish);
+        if (englishRadio.isChecked()) languageChoice = ENGLISH_L;
+        if (spanishRadio.isChecked()) languageChoice = SPANISH_L;
 
         welcomeTextView = (TextView) findViewById(R.id.welcomeTextView);
         scaTextView = (TextView) findViewById(R.id.scaTextView);
         scaSpinner = (Spinner) findViewById(R.id.spnStudent);
+        dateButton = (Button) findViewById(R.id.dateButton);
+        timeButton = (Button) findViewById(R.id.timeButton);
+        nameTextView = (TextView) findViewById(R.id.nameTextView);
+        emailTextView = (TextView) findViewById(R.id.emailTextView);
 
-        switch (languageC) {
+        switch (languageChoice) {
 
             case ENGLISH_L:
 
@@ -75,6 +155,10 @@ implements View.OnClickListener {
                         this, R.array.student_array, android.R.layout.simple_spinner_item);
                 adapterEng.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 scaSpinner.setAdapter(adapterEng);
+                dateButton.setText(getString(R.string.strDate));
+                timeButton.setText(getString(R.string.strTime));
+                nameTextView.setText(getString(R.string.strName));
+                emailTextView.setText(getString(R.string.strEmail));
                 break;
 
             case SPANISH_L:
@@ -86,8 +170,11 @@ implements View.OnClickListener {
                         this, R.array.spn_student_array, android.R.layout.simple_spinner_item);
                 adapterSpn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 scaSpinner.setAdapter(adapterSpn);
+                dateButton.setText(getString(R.string.spn_strDate));
+                timeButton.setText(getString(R.string.spn_strTime));
+                nameTextView.setText(getString(R.string.spn_strName));
+                emailTextView.setText(getString(R.string.spn_strEmail));
                 break;
         }
-
     }
 }
