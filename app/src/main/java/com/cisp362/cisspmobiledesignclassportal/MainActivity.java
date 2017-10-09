@@ -19,7 +19,6 @@ implements TextView.OnEditorActionListener, View.OnClickListener {
     private TextView errorLogin;
     int tries;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +37,6 @@ implements TextView.OnEditorActionListener, View.OnClickListener {
         passwordTextView.setOnEditorActionListener(this);
         loginButton.setOnClickListener(this);
     }
-
 
     public boolean checkPassword() {
 

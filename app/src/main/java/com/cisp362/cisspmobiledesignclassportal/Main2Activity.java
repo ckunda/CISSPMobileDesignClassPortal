@@ -125,7 +125,7 @@ implements View.OnClickListener {
 
         // Set date/time
         dateTimeTextView = (TextView) findViewById(R.id.dateTimeTextView);
-        dateTimeTextView.setText("Date/Time: " + date + " " + time);
+        //dateTimeTextView.setText("Date/Time: " + date + " " + time);
 
     }
 
