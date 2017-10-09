@@ -82,11 +82,11 @@
 
         <EditText
             android:id="@+id/nameEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="time"/>
+            android:inputType="textPersonName"
+            android:ems="10"/>
 
     </LinearLayout>
 
@@ -105,11 +105,11 @@
 
         <EditText
             android:id="@+id/emailEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="time"/>
+            android:inputType="textEmailAddress"/>
 
     </LinearLayout>
 
@@ -126,7 +126,7 @@
 
         <EditText
             android:id="@+id/dateEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
@@ -147,7 +147,7 @@
 
         <EditText
             android:id="@+id/timeEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"

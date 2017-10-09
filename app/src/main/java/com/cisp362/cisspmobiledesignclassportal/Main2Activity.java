@@ -62,6 +62,7 @@ implements View.OnClickListener {
     }
     @Override
     public void onClick(View v) {
+
         if (v == englishRadio || v == spanishRadio) setLanguage();
         if (v == dateButton) setDate();
         if (v == timeButton) setTime();
