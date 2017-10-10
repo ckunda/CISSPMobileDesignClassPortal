@@ -38,18 +38,12 @@ implements View.OnClickListener {
         Intent intent = getIntent();
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        // Get/set Date Time
-        setDateTime();
-
         // Get Language choice
         setLanguage();
 
         // Set radio button listeners
         englishRadio.setOnClickListener(this);
         spanishRadio.setOnClickListener(this);
-
-        nameEditText = (EditText) findViewById(R.id.nameEditText);
-        emailEditText = (EditText) findViewById(R.id.emailEditText);
 
         dateEditText = (EditText) findViewById(R.id.dateEditText);
         timeEditText = (EditText) findViewById(R.id.timeEditText);
@@ -63,9 +57,18 @@ implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if (v == englishRadio || v == spanishRadio) setLanguage();
-        if (v == dateButton) setDate();
-        if (v == timeButton) setTime();
+        switch (v.getId()) {
+            case R.id.radioEnglish :
+            case R.id.radioSpanish :
+                setLanguage();
+                break;
+            case R.id.dateButton :
+                setDate();
+                break;
+            case R.id.timeButton :
+                setTime();
+                break;
+        }
     }
 
     public void setDate() {
@@ -76,16 +79,16 @@ implements View.OnClickListener {
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                new DatePickerDialog.OnDateSetListener()
-                {
+        // Display date picker dialog
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DatePicker,
+                new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth)
-                    {
-                        dateEditText.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                          int monthOfYear, int dayOfMonth) {
+                        dateEditText.setText((monthOfYear + 1) + "/" + dayOfMonth + "/" + year);
                     }
                 }, mYear, mMonth, mDay);
+
         datePickerDialog.show();
     }
 
@@ -96,38 +99,17 @@ implements View.OnClickListener {
         int mHour = c.get(Calendar.HOUR_OF_DAY);
         int mMinute = c.get(Calendar.MINUTE);
 
-        // Launch Time Picker Dialog
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                new TimePickerDialog.OnTimeSetListener()
-                {
+        // Display time picker dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DatePicker,
+                new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay,
-                                          int minute)
-                    {
+                                          int minute) {
                         timeEditText.setText(hourOfDay + ":" + minute);
                     }
                 }, mHour, mMinute, false);
+
         timePickerDialog.show();
-    }
-
-    public void setDateTime() {
-
-        // Get Current Date
-        Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
-        int mDay = c.get(Calendar.DAY_OF_MONTH);
-        String date = (mMonth+1) + "/" + mDay + "/" + mYear;
-
-        // Get Current Time
-        int mHour = c.get(Calendar.HOUR_OF_DAY);
-        int mMinute = c.get(Calendar.MINUTE);
-        String time = mHour + ":" + mMinute;
-
-        // Set date/time
-        dateTimeTextView = (TextView) findViewById(R.id.dateTimeTextView);
-        //dateTimeTextView.setText("Date/Time: " + date + " " + time);
-
     }
 
     public void setLanguage() {
