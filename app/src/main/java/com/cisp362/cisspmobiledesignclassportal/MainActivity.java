@@ -50,7 +50,7 @@ implements TextView.OnEditorActionListener, View.OnClickListener {
         String validPassword = getString(R.string.validPassword);
 
         // Validate if the user id and password are correct
-        if (userIdTextView.getText().toString().compareToIgnoreCase(validUserId) == 0);
+        if (userIdTextView.getText().toString().compareToIgnoreCase(validUserId) == 0)
             if (passwordTextView.getText().toString().equals(validPassword)) {
                 errorLogin.setText("");
                 errorLogin.setTextColor(Color.MAGENTA);
@@ -71,9 +71,7 @@ implements TextView.OnEditorActionListener, View.OnClickListener {
 
         // Go to next screen if valid user id and password
         if (checkPassword()) {
-
             String message = userIdTextView.getText().toString();
-
             Intent intent = new Intent(this, Main2Activity.class);
             intent.putExtra(EXTRA_MESSAGE, message);
             startActivity(intent);

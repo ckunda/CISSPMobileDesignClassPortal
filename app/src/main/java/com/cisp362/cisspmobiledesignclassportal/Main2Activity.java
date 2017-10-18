@@ -19,6 +19,7 @@ import java.util.Calendar;
 public class Main2Activity extends AppCompatActivity
 implements View.OnClickListener {
 
+    public static final String EXTRA_MESSAGE = "com.cisp362.cisspmobiledesignclassportal";
     public static final String ENGLISH_L = "English";
     public static final String SPANISH_L = "Spanish";
     private TextView welcomeTextView, scaTextView, dateTimeTextView,
@@ -28,6 +29,7 @@ implements View.OnClickListener {
     private RadioButton englishRadio, spanishRadio;
     private Spinner scaSpinner;
     private String languageChoice, message;
+    private Button nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,17 +49,21 @@ implements View.OnClickListener {
 
         dateEditText = (EditText) findViewById(R.id.dateEditText);
         timeEditText = (EditText) findViewById(R.id.timeEditText);
+        nextButton = (Button) findViewById(R.id.btnNext);
 
         dateButton = (Button) findViewById(R.id.dateButton);
         timeButton = (Button) findViewById(R.id.timeButton);
         dateButton.setOnClickListener(this);
         timeButton.setOnClickListener(this);
+        nextButton.setOnClickListener(this);
 
     }
+
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
+
             case R.id.radioEnglish :
             case R.id.radioSpanish :
                 setLanguage();
@@ -67,6 +73,12 @@ implements View.OnClickListener {
                 break;
             case R.id.timeButton :
                 setTime();
+                break;
+            case R.id.btnNext :
+                String message = languageChoice;
+                Intent intent = new Intent(this, Main3Activity.class);
+                intent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(intent);
                 break;
         }
     }

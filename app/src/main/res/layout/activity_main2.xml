@@ -78,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/strName"
+            android:labelFor="@+id/nameEditText"
             android:textSize="18sp"/>
 
         <EditText
@@ -101,6 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/strEmail"
+            android:labelFor="@+id/emailEditText"
             android:textSize="18sp"/>
 
         <EditText
@@ -121,7 +123,8 @@
         <Button
             android:id="@+id/dateButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:background="@android:color/holo_blue_bright"
             android:text="@string/strDate"/>
 
         <EditText
@@ -134,6 +137,10 @@
 
     </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -142,7 +149,8 @@
         <Button
             android:id="@+id/timeButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:background="@android:color/holo_blue_bright"
             android:text="@string/strTime"/>
 
         <EditText
@@ -154,5 +162,16 @@
             android:inputType="time"/>
 
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_bright"
+        android:text="@string/strNext"/>
 
 </LinearLayout>

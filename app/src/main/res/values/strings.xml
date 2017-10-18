@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">SCC CISP Mobile Design Class Portal</string>
     <string name="validUserName">nbkaecy</string>
     <string name="validPassword">tramp</string>
@@ -9,10 +10,10 @@
     <string name="hintPassword">Password</string>
     <string name="strTitle">SCC CISP 362 Mobile App Programming</string>
     <string name="strLogin">Login</string>
-    <string name="strEnglish">English</string>
-    <string name="strSpanish">Spanish</string>
     <string name="strError">Incorrect login (No. of tries</string>
+    <string name="strNext">Next</string>
 
+    <string name="strEnglish">English</string>
     <string name="strSacCity">Sac City Affiliation</string>
     <string name="strWelcome">Welcome</string>
     <string name="strLanguage">. Please choose your language and proceed,</string>
@@ -20,6 +21,7 @@
     <string name="strTime">Select Time </string>
     <string name="strName">Name:</string>
     <string name="strEmail">email:</string>
+    <string name="strHi">Hi, my name is Chakra Kunda. Thank you for taking the time to review my app.</string>
     <string-array name="student_array">
         <item>Student</item>
         <item>Faculty</item>
@@ -28,6 +30,7 @@
         <item>None</item>
     </string-array>
 
+    <string name="strSpanish">Spanish</string>
     <string name="spn_strSacCity">Sac City Afiliación</string>
     <string name="spn_strWelcome">Bienvenido</string>
     <string name="spn_strLanguage">. Por favor elija su idioma y proceda,</string>
@@ -35,6 +38,7 @@
     <string name="spn_strTime">seleccione el tiempo</string>
     <string name="spn_strName">Nombre:</string>
     <string name="spn_strEmail">email:</string>
+    <string name="spn_strHi">Hola, mi nombre es Chakra Kunda. Gracias por tomarse el tiempo para revisar mi aplicación.</string>
     <string-array name="spn_student_array">
         <item>Estudiante</item>
         <item>Facultad</item>
