@@ -1,9 +1,9 @@
 package com.cisp362.cisspmobiledesignclassportal;
 
+import android.support.v7.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -36,7 +36,7 @@ implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // Get Intent message
+        // Get Intent message (User ID)
         Intent intent = getIntent();
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 

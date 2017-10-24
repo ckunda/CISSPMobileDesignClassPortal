@@ -12,6 +12,10 @@
     <string name="strLogin">Login</string>
     <string name="strError">Incorrect login (No. of tries</string>
     <string name="strNext">Next</string>
+    <string name="strAboutMe">About Me</string>
+    <string name="strAboutMyApp">About My App</string>
+    <string name="strAppLink">Link to App</string>
+
 
     <string name="strEnglish">English</string>
     <string name="strSacCity">Sac City Affiliation</string>

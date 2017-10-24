@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mnuMyApp"
+        android:icon="@drawable/weather"
+        android:title="@string/strAboutMyApp"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/mnuAbout"
+        android:icon="@drawable/ckunda"
+        android:title="@string/strAboutMe"
+        app:showAsAction="never"/>
+</menu>
