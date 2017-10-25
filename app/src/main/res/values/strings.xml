@@ -14,25 +14,7 @@
     <string name="strNext">Next</string>
     <string name="strAboutMe">About Me</string>
     <string name="strAboutMyApp">About My App</string>
-    <string name="strAppLink">Link to App</string>
-
-
-    <string name="strEnglish">English</string>
-    <string name="strSacCity">Sac City Affiliation</string>
-    <string name="strWelcome">Welcome</string>
-    <string name="strLanguage">. Please choose your language and proceed,</string>
-    <string name="strDate">Select Date </string>
-    <string name="strTime">Select Time </string>
-    <string name="strName">Name:</string>
-    <string name="strEmail">email:</string>
-    <string name="strHi">Hi, my name is Chakra Kunda. Thank you for taking the time to review my app.</string>
-    <string-array name="student_array">
-        <item>Student</item>
-        <item>Faculty</item>
-        <item>Alumni</item>
-        <item>Prospective</item>
-        <item>None</item>
-    </string-array>
+    <string name="strAppLink">Class Project App: Weather</string>
 
     <string name="strSpanish">Spanish</string>
     <string name="spn_strSacCity">Sac City Afiliación</string>
@@ -49,6 +31,26 @@
         <item>Alumni</item>
         <item>Futuro</item>
         <item>Ninguna</item>
+    </string-array>
+
+    <string name="strEnglish">English</string>
+    <string name="strSacCity">Sac City Affiliation</string>
+    <string name="strWelcome">Welcome</string>
+    <string name="strLanguage">. Please choose your language and proceed,</string>
+    <string name="strDate">Select Date </string>
+    <string name="strTime">Select Time </string>
+    <string name="strName">Name:</string>
+    <string name="strEmail">email:</string>
+    <string name="strHi">Hi, my name is Chakra Kunda. Thank you for taking the time to review my app.</string>
+    <string name="strCategory">Category: Productivity</string>
+    <string name="strDesc">Displays local weather and optionally create a list of cities</string>
+    <string name="strRating">Please go ahead and rate my App</string>
+    <string-array name="student_array">
+        <item>Student</item>
+        <item>Faculty</item>
+        <item>Alumni</item>
+        <item>Prospective</item>
+        <item>None</item>
     </string-array>
 
 </resources>
