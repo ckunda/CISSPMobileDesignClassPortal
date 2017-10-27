@@ -13,7 +13,7 @@ public class Main3Activity extends AppCompatActivity {
     public static final String ENGLISH_L = "English";
     public static final String SPANISH_L = "Spanish";
     private String languageChoice;
-    private TextView txtHi;
+    private TextView txtHi, txtCategory, txtDesc, txtRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,9 @@ public class Main3Activity extends AppCompatActivity {
         languageChoice = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         txtHi = (TextView) findViewById(R.id.txtHi);
+        txtCategory = (TextView) findViewById(R.id.txtCategory);
+        txtDesc = (TextView) findViewById(R.id.txtDesc);
+        txtRating = (TextView) findViewById(R.id.txtRating);
         // Set Language choice
         setLanguage();
     }
@@ -59,10 +62,16 @@ public class Main3Activity extends AppCompatActivity {
 
             case ENGLISH_L:
                 txtHi.setText(getString(R.string.strHi));
+                txtCategory.setText(getString(R.string.strCategory));
+                txtDesc.setText(getString(R.string.strDesc));
+                txtRating.setText(getString(R.string.strRating));
                 break;
 
             case SPANISH_L:
                 txtHi.setText(getString(R.string.spn_strHi));
+                txtCategory.setText(getString(R.string.spn_strCategory));
+                txtDesc.setText(getString(R.string.spn_strDesc));
+                txtRating.setText(getString(R.string.spn_strRating));
                 break;
         }
     }

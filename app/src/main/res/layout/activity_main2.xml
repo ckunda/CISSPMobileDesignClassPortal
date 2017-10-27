@@ -172,6 +172,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_blue_bright"
-        android:text="@string/strNext"/>
+        android:text="@string/strNext"
+        android:textAlignment="center"
+        android:textSize="18sp"/>
 
 </LinearLayout>

@@ -25,6 +25,9 @@
     <string name="spn_strName">Nombre:</string>
     <string name="spn_strEmail">email:</string>
     <string name="spn_strHi">Hola, mi nombre es Chakra Kunda. Gracias por tomarse el tiempo para revisar mi aplicación.</string>
+    <string name="spn_strCategory">Category: Productivity</string>
+    <string name="spn_strDesc">Mi aplicación muestra el clima local o para cualquier ciudad del mundo.</string>
+    <string name="spn_strRating">Siga adelante y califique mi aplicación si lo desea.</string>
     <string-array name="spn_student_array">
         <item>Estudiante</item>
         <item>Facultad</item>
@@ -43,8 +46,9 @@
     <string name="strEmail">email:</string>
     <string name="strHi">Hi, my name is Chakra Kunda. Thank you for taking the time to review my app.</string>
     <string name="strCategory">Category: Productivity</string>
-    <string name="strDesc">Displays local weather and optionally create a list of cities</string>
-    <string name="strRating">Please go ahead and rate my App</string>
+    <string name="strDesc">My App displays local weather or for any city in the world.</string>
+    <string name="strRating">Please go ahead and rate my App if you like.</string>
+    <string name="strSubmit">Submit</string>
     <string-array name="student_array">
         <item>Student</item>
         <item>Faculty</item>
