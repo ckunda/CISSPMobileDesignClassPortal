@@ -1,10 +1,13 @@
 package com.cisp362.cisspmobiledesignclassportal;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,6 +17,13 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
 public class Main2Activity extends AppCompatActivity
@@ -22,6 +32,8 @@ implements View.OnClickListener {
     public static final String EXTRA_MESSAGE = "com.cisp362.cisspmobiledesignclassportal";
     public static final String ENGLISH_L = "English";
     public static final String SPANISH_L = "Spanish";
+    public static final String AUTHOR = "CKUNDA";
+
     private TextView welcomeTextView, scaTextView, dateTimeTextView,
                     nameTextView, emailTextView;
     private EditText dateEditText, timeEditText, nameEditText, emailEditText;
@@ -46,6 +58,8 @@ implements View.OnClickListener {
         // Set radio button listeners
         englishRadio.setOnClickListener(this);
         spanishRadio.setOnClickListener(this);
+        nameEditText = (EditText) findViewById(R.id.nameEditText);
+        emailEditText = (EditText) findViewById(R.id.emailEditText);
 
         dateEditText = (EditText) findViewById(R.id.dateEditText);
         timeEditText = (EditText) findViewById(R.id.timeEditText);
@@ -56,6 +70,14 @@ implements View.OnClickListener {
         dateButton.setOnClickListener(this);
         timeButton.setOnClickListener(this);
         nextButton.setOnClickListener(this);
+
+        // Protect date / time fields
+        dateEditText.setEnabled(false);
+        dateEditText.setClickable(false);
+        dateEditText.setFocusable(false);
+        timeEditText.setEnabled(false);
+        timeEditText.setClickable(false);
+        timeEditText.setFocusable(false);
 
     }
 
@@ -75,12 +97,46 @@ implements View.OnClickListener {
                 setTime();
                 break;
             case R.id.btnNext :
-                String message = languageChoice;
-                Intent intent = new Intent(this, Main3Activity.class);
-                intent.putExtra(EXTRA_MESSAGE, message);
-                startActivity(intent);
+                if (validate()) {
+                    saveToFile();
+                    String message = languageChoice;
+                    Intent intent = new Intent(this, Main3Activity.class);
+                    intent.putExtra(EXTRA_MESSAGE, message);
+                    startActivity(intent);
+                }
                 break;
         }
+    }
+
+    public boolean validate() {
+        if (nameEditText.getText().toString().isEmpty() ||
+            emailEditText.getText().toString().isEmpty() ||
+            dateEditText.getText().toString().isEmpty() ||
+            timeEditText.getText().toString().isEmpty()) {
+            AlertDialog.Builder dltAlert = new AlertDialog.Builder(this);
+            dltAlert.setTitle("CISP Mobile Design Class App");
+            dltAlert.setMessage("Please enter values in name, email, date, and time fields.");
+            dltAlert.setPositiveButton("OK", null);
+            dltAlert.setCancelable(true);
+            dltAlert.create().show();
+            return false;
+        }
+        return true;
+    }
+
+    public void saveToFile() {
+
+        String data = scaSpinner.getSelectedItem().toString() + " " +
+                        languageChoice + " " +
+                        nameEditText.getText().toString() + " " +
+                        emailEditText.getText().toString() + " " +
+                        dateEditText.getText().toString() + " " +
+                        timeEditText.getText().toString() + " " +
+                        AUTHOR + "\n";
+        writeToFile(data, this);
+        String temp = readFromFile(this);
+        System.out.println("Reading from File");
+        System.out.println(temp);
     }
 
     public void setDate() {
@@ -101,6 +157,7 @@ implements View.OnClickListener {
                     }
                 }, mYear, mMonth, mDay);
 
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         datePickerDialog.show();
     }
 
@@ -171,5 +228,49 @@ implements View.OnClickListener {
                 emailTextView.setText(getString(R.string.spn_strEmail));
                 break;
         }
+    }
+
+    private void writeToFile(String data, Context context) {
+
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_APPEND));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+            System.out.println("Wrote successfully");
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+            System.out.println("File Failed to open");
+        }
+    }
+
+    private String readFromFile(Context context) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput("config.txt");
+
+            if (inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
     }
 }

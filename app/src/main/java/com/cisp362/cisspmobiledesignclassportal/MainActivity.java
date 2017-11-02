@@ -1,14 +1,19 @@
 package com.cisp362.cisspmobiledesignclassportal;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class MainActivity extends AppCompatActivity
 implements TextView.OnEditorActionListener, View.OnClickListener {
@@ -23,6 +28,8 @@ implements TextView.OnEditorActionListener, View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        openFile("", this);
 
         loginButton = (Button) findViewById(R.id.loginButton);
         userIdTextView = (EditText) findViewById(R.id.userIdEditText);
@@ -75,6 +82,19 @@ implements TextView.OnEditorActionListener, View.OnClickListener {
             Intent intent = new Intent(this, Main2Activity.class);
             intent.putExtra(EXTRA_MESSAGE, message);
             startActivity(intent);
+        }
+    }
+    private void openFile(String data,Context context) {
+
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
+            //outputStreamWriter.write(data);
+            //outputStreamWriter.close();
+            System.out.println("Opened successfully");
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+            System.out.println("FIle Failed to open");
         }
     }
 
