@@ -13,7 +13,7 @@
     <string name="strError">Incorrect login (No. of tries</string>
     <string name="strNext">Next</string>
     <string name="strAboutMe">About Me</string>
-    <string name="strAboutMyApp">About My App</string>
+    <string name="strAboutMyApp">About MyWeather App</string>
     <string name="strAppLink">Class Project App: Weather</string>
 
     <string name="strSpanish">Spanish</string>

@@ -43,13 +43,19 @@ public class Main3Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+
             case R.id.mnuAbout:
                 Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                 return true;
+
             case R.id.mnuMyApp:
                 Toast.makeText(this, "My Weather App", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+
+                // Launch MyWeather app
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.ckunda.myweather");
+                if (launchIntent != null) { //null pointer check in case package name was not found
+                    startActivity(launchIntent);
+                }
                 return true;
 
             default:
