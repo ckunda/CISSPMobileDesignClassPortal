@@ -53,17 +53,29 @@ public class Main3Activity extends AppCompatActivity
     public void onClick(View v) {
 
         rBar1 = (RatingBar) findViewById(R.id.rBar1);
-        rBar1.getNumStars();
         String subject = "MyWeather App (android)";
         String emailText = "Hello " + name + ",\n\nMy name is Chakra Kunda. " +
-                "I am a student at Sacramento City Community College. " +
-                "Thank you for taking the time to review and rate my app today.\n" +
-                "\nYour rating of my app: " + rBar1.getNumStars() + " stars.\n" +
-                "\nYour information:\n" +
-                "\nName: " + name +
-                "\nSC Affiliation: " + studentType +
-                "\nAppointment Date/Time: " + date + " / " + time +
-                "\n\nSincerely,\n\nChakra Kunda";
+                        "I am a student at Sacramento City Community College. " +
+                        "Thank you for taking the time to review and rate my app today.\n" +
+                        "\nYour rating of my app: " + rBar1.getRating() + " stars.\n" +
+                        "\nYour information:\n" +
+                        "\nName: " + name +
+                        "\nSC Affiliation: " + studentType +
+                        "\nAppointment Date/Time: " + date + " / " + time +
+                        "\n\nSincerely,\n\nChakra Kunda";
+
+        if (languageChoice.equals(SPANISH_L)) {
+            emailText = "Hola " + name + ",\n\nMi nombre es Chakra Kunda. " +
+                    "Soy un estudiante en Sacramento City Community College. " +
+                    "Gracias por tomarse el tiempo para revisar y calificar mi aplicación hoy.\n" +
+                    "\nTu calificación de mi aplicación: " + rBar1.getRating() + " estrellas.\n" +
+                    "\nTu información:\n" +
+                    "\nNombre: " + name +
+                    "\nAfiliación SC: " + studentType +
+                    "\nFecha / Hora de la cita: " + date + " / " + time +
+                    "\n\nSinceramente,\n\nChakra Kunda";
+        }
+
         // eMail
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
         emailIntent.setData(Uri.parse("mailto:" + email));
