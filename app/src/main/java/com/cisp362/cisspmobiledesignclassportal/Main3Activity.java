@@ -1,19 +1,26 @@
 package com.cisp362.cisspmobiledesignclassportal;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Main3Activity extends AppCompatActivity {
+public class Main3Activity extends AppCompatActivity
+        implements View.OnClickListener {
 
     public static final String ENGLISH_L = "English";
     public static final String SPANISH_L = "Spanish";
-    private String languageChoice;
+    private String studentType, languageChoice, name, email, date, time;
     private TextView txtHi, txtCategory, txtDesc, txtRating;
+    private Button submit;
+    private RatingBar rBar1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +29,47 @@ public class Main3Activity extends AppCompatActivity {
 
         // Get Intent message (language choice)
         Intent intent = getIntent();
-        languageChoice = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String separated[] = message.split("::");
+        studentType = separated[0];
+        languageChoice = separated[1];
+        name = separated[2];
+        email = separated[3];
+        date = separated[4];
+        time = separated[5];
 
         txtHi = (TextView) findViewById(R.id.txtHi);
         txtCategory = (TextView) findViewById(R.id.txtCategory);
         txtDesc = (TextView) findViewById(R.id.txtDesc);
         txtRating = (TextView) findViewById(R.id.txtRating);
+        submit = (Button) findViewById(R.id.btnSubmit);
+        submit.setOnClickListener(this);
+
         // Set Language choice
         setLanguage();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        rBar1 = (RatingBar) findViewById(R.id.rBar1);
+        rBar1.getNumStars();
+        String subject = "MyWeather App (android)";
+        String emailText = "Hello " + name + ",\n\nMy name is Chakra Kunda. " +
+                "I am a student at Sacramento City Community College. " +
+                "Thank you for taking the time to review and rating my app today.\n" +
+                "\nYour rating of my app: " + rBar1.getNumStars() + " stars.\n" +
+                "\nYour information:\n" +
+                "\nName: " + name +
+                "\nSC Affiliation: " + studentType +
+                "\nAppointment Date/Time: " + date + " / " + time +
+                "\n\nSincerely,\n\nChakra Kunda";
+        // eMail
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        emailIntent.setData(Uri.parse("mailto:" + email));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, emailText);
+        startActivity(Intent.createChooser(emailIntent, "Send feedback"));
     }
 
     @Override

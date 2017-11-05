@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 public class MainActivity extends AppCompatActivity
-implements TextView.OnEditorActionListener, View.OnClickListener {
+        implements TextView.OnEditorActionListener, View.OnClickListener {
 
     public static final String EXTRA_MESSAGE = "com.cisp362.cisspmobiledesignclassportal";
     private Button loginButton;

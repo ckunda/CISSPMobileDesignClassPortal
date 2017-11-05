@@ -27,7 +27,7 @@ import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
 public class Main2Activity extends AppCompatActivity
-implements View.OnClickListener {
+        implements View.OnClickListener {
 
     public static final String EXTRA_MESSAGE = "com.cisp362.cisspmobiledesignclassportal";
     public static final String ENGLISH_L = "English";
@@ -99,7 +99,12 @@ implements View.OnClickListener {
             case R.id.btnNext :
                 if (validate()) {
                     saveToFile();
-                    String message = languageChoice;
+                    String message = scaSpinner.getSelectedItem().toString() + "::" +
+                            languageChoice + "::" +
+                            nameEditText.getText().toString() + "::" +
+                            emailEditText.getText().toString() + "::" +
+                            dateEditText.getText().toString() + "::" +
+                            timeEditText.getText().toString();
                     Intent intent = new Intent(this, Main3Activity.class);
                     intent.putExtra(EXTRA_MESSAGE, message);
                     startActivity(intent);
