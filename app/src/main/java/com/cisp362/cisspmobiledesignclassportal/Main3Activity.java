@@ -57,7 +57,7 @@ public class Main3Activity extends AppCompatActivity
         String subject = "MyWeather App (android)";
         String emailText = "Hello " + name + ",\n\nMy name is Chakra Kunda. " +
                 "I am a student at Sacramento City Community College. " +
-                "Thank you for taking the time to review and rating my app today.\n" +
+                "Thank you for taking the time to review and rate my app today.\n" +
                 "\nYour rating of my app: " + rBar1.getNumStars() + " stars.\n" +
                 "\nYour information:\n" +
                 "\nName: " + name +
