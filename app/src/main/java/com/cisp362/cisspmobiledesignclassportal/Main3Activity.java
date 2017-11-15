@@ -12,6 +12,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class Main3Activity extends AppCompatActivity
         implements View.OnClickListener {
 
@@ -82,6 +84,16 @@ public class Main3Activity extends AppCompatActivity
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT, emailText);
         startActivity(Intent.createChooser(emailIntent, "Send feedback"));
+
+        // Write to DB
+        MySQLiteHelper db = new MySQLiteHelper(this);
+        // add
+        db.addAppVisitor(new AppVisitor(name, email, languageChoice,
+                studentType, date, time, String.valueOf(rBar1.getNumStars())));
+
+        // get all visitors
+        List<AppVisitor> list = db.getAllAppVisitors();
+
     }
 
     @Override
