@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,6 +55,7 @@ public class Main3Activity extends AppCompatActivity
     @Override
     public void onClick(View v) {
 
+        String appLink = "https://play.google.com/store/apps/details?id=com.ckunda.myweather";
         rBar1 = (RatingBar) findViewById(R.id.rBar1);
         String subject = "MyWeather App (android)";
         String emailText = "Hello " + name + ",\n\nMy name is Chakra Kunda. " +
@@ -64,6 +66,7 @@ public class Main3Activity extends AppCompatActivity
                         "\nName: " + name +
                         "\nSC Affiliation: " + studentType +
                         "\nAppointment Date/Time: " + date + " / " + time +
+                        "\n\nLink to my app on Google Store: " + appLink +
                         "\n\nSincerely,\n\nChakra Kunda";
 
         if (languageChoice.equals(SPANISH_L)) {
@@ -75,6 +78,7 @@ public class Main3Activity extends AppCompatActivity
                     "\nNombre: " + name +
                     "\nAfiliación SC: " + studentType +
                     "\nFecha / Hora de la cita: " + date + " / " + time +
+                    "\n\nLink to my app on Google Store: " + appLink +
                     "\n\nSinceramente,\n\nChakra Kunda";
         }
 
@@ -84,15 +88,25 @@ public class Main3Activity extends AppCompatActivity
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT, emailText);
         startActivity(Intent.createChooser(emailIntent, "Send feedback"));
+        Log.d("Emailing Visitor", subject);
 
         // Write to DB
         MySQLiteHelper db = new MySQLiteHelper(this);
+//        db.deleteAllAppVisitors();
         // add
         db.addAppVisitor(new AppVisitor(name, email, languageChoice,
                 studentType, date, time, String.valueOf(rBar1.getNumStars())));
 
         // get all visitors
         List<AppVisitor> list = db.getAllAppVisitors();
+
+        // email app visitors to me
+        Intent email2Intent = new Intent(Intent.ACTION_SENDTO);
+        email2Intent.setData(Uri.parse("mailto:" + email));
+        email2Intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        email2Intent.putExtra(Intent.EXTRA_TEXT, list.toString());
+        startActivity(Intent.createChooser(email2Intent, "App Visitors"));
+        Log.d("Emailing Data", subject);
 
     }
 

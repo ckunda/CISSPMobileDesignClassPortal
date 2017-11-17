@@ -223,9 +223,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 AppVisitor = new AppVisitor();
-                db.delete(TABLE_APPVISITORS,
-                        KEY_ID+" = ?",
-                        new String[] { String.valueOf(AppVisitor.getId()) });
+                AppVisitor.setId(Integer.parseInt(cursor.getString(0)));
+                deleteAppVisitor(AppVisitor);
             } while (cursor.moveToNext());
         }
 
