@@ -47,30 +47,23 @@ public class MainActivity extends AppCompatActivity
 
     public boolean checkPassword() {
 
-        boolean status = false;
-
-        // Increment number of attempts counter
-        tries++;
-
         // Get valid user id and password from strings xml file
         String validUserId = getString(R.string.validUserName);
         String validPassword = getString(R.string.validPassword);
 
         // Validate if the user id and password are correct
-        if (userIdTextView.getText().toString().compareToIgnoreCase(validUserId) == 0)
-            if (passwordTextView.getText().toString().equals(validPassword)) {
+        if (userIdTextView.getText().toString().compareToIgnoreCase(validUserId) == 0
+            && (passwordTextView.getText().toString().equals(validPassword))) {
                 errorLogin.setText("");
                 errorLogin.setTextColor(Color.MAGENTA);
-                status = true;
                 tries = 0;
+                return true;
             }
-            // Invalid credentials, display error
-            else {
-                errorLogin.setText(getString(R.string.strError) + " " + tries + ")");
-                errorLogin.setTextColor(Color.RED);
-                status = false;
-            }
-        return status;
+
+        // Invalid credentials, display error
+        errorLogin.setText(getString(R.string.strError) + " " + ++tries + ")");
+        errorLogin.setTextColor(Color.RED);
+        return false;
     }
 
     // Validate credentials and go to next screen if correct

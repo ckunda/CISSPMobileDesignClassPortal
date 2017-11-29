@@ -1,8 +1,8 @@
 <resources>
 
     <string name="app_name">SCC CISP Mobile Design Class Portal</string>
-    <string name="validUserName">nbkaecy</string>
-    <string name="validPassword">tramp</string>
+    <string name="validUserName">cisp362</string>
+    <string name="validPassword">cisp362</string>
     <string name="strUserID">UserID:</string>
     <string name="strUserName">User Name:</string>
     <string name="hintUserName">User Name</string>
@@ -10,7 +10,7 @@
     <string name="hintPassword">Password</string>
     <string name="strTitle">SCC CISP 362 Mobile App Programming</string>
     <string name="strLogin">Login</string>
-    <string name="strError">Incorrect login (No. of tries</string>
+    <string name="strError">Login failed (No. of tries</string>
     <string name="strNext">Next</string>
     <string name="strAboutMe">About Me</string>
     <string name="strAboutMyApp">About MyWeather App</string>

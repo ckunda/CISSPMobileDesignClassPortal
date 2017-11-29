@@ -90,6 +90,7 @@ public class Main3Activity extends AppCompatActivity
         startActivity(Intent.createChooser(emailIntent, "Send feedback"));
         Log.d("Emailing Visitor", subject);
 
+
         // Write to DB
         MySQLiteHelper db = new MySQLiteHelper(this);
 //        db.deleteAllAppVisitors();
@@ -102,12 +103,11 @@ public class Main3Activity extends AppCompatActivity
 
         // email app visitors to me
         Intent email2Intent = new Intent(Intent.ACTION_SENDTO);
-        email2Intent.setData(Uri.parse("mailto:" + email));
+        email2Intent.setData(Uri.parse("mailto:ckunda@gmail.com"));
         email2Intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         email2Intent.putExtra(Intent.EXTRA_TEXT, list.toString());
         startActivity(Intent.createChooser(email2Intent, "App Visitors"));
         Log.d("Emailing Data", subject);
-
     }
 
     @Override
